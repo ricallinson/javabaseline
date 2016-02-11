@@ -38,7 +38,6 @@ class HttpMessageHandler implements Runnable {
                 writer.flush();
                 // System.out.println(Integer.toString(this.id) + ":" + Integer.toString(this.keepAliveMax));
             }
-            // writer.close();
             this.socket.close();
         } catch (java.io.IOException e) {
             System.out.println(e);
