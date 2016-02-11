@@ -6,42 +6,39 @@
 
 package github.com.ricallinson.javabaseline;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.net.ServerSocket;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 public class HttpBaseline_test {
 
     public static void main(String[] args) {
         System.out.println("Server started...");
         try {
+            String LF = "\n";
+            String CRLF = "\r";
             int count = 0;
-            ServerSocket listener = new ServerSocket(8080);
+            java.net.ServerSocket listener = new java.net.ServerSocket(8080);
             while (true) {
-                Socket socket = listener.accept();
+                java.net.Socket socket = listener.accept();
                 try {
-                    InputStream reader = socket.getInputStream();
+                    java.io.InputStream reader = socket.getInputStream();
                     reader.read(new byte[1000]);
-                    OutputStream writer = socket.getOutputStream();
+                    java.io.OutputStream writer = socket.getOutputStream();
                     String body = "<h1>Hello world</h1>";
-                    writer.write("HTTP/1.1 200 OK\r\n".getBytes());
-                    writer.write(("Content-Length: " + Integer.toString(body.length()) + "\r\n").getBytes());
-                    writer.write("Content-Type: text/html\r\n".getBytes());
-                    writer.write("Connection: Closed\r\n".getBytes());
-                    writer.write("\r\n".getBytes());
+                    writer.write(("HTTP/1.1 200 OK" + LF).getBytes());
+                    writer.write(("Content-Length: " + Integer.toString(body.length()) + LF).getBytes());
+                    writer.write(("Content-Type: text/html" + LF).getBytes());
+                    writer.write(("Connection: close" + LF).getBytes());
+                    writer.write(LF.getBytes());
                     writer.write(body.getBytes());
                     writer.flush();
+                    writer.close();
                     socket.close();
                     count++;
                     System.out.println(count);
-                } catch (IOException e) {
+                } catch (java.io.IOException e) {
                     System.out.println(e);
                     socket.close();
                 }
             }
-        } catch (IOException e) {
+        } catch (java.io.IOException e) {
             System.out.println(e);
         }
     }
