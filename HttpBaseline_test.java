@@ -9,34 +9,14 @@ package github.com.ricallinson.javabaseline;
 public class HttpBaseline_test {
 
     public static void main(String[] args) {
-        System.out.println("Server started...");
+        int cores = Runtime.getRuntime().availableProcessors();
+        java.util.concurrent.ExecutorService executor = java.util.concurrent.Executors.newFixedThreadPool(cores);
+        System.out.println("Server started, using " + Integer.toString(cores) + " cores...");
         try {
-            String LF = "\n";
-            String CRLF = "\r";
-            int count = 0;
             java.net.ServerSocket listener = new java.net.ServerSocket(8080);
+            int count = 0;
             while (true) {
-                java.net.Socket socket = listener.accept();
-                try {
-                    java.io.InputStream reader = socket.getInputStream();
-                    reader.read(new byte[1000]);
-                    java.io.OutputStream writer = socket.getOutputStream();
-                    String body = "<h1>Hello world</h1>" + LF;
-                    writer.write(("HTTP/1.1 200 OK" + LF).getBytes());
-                    writer.write(("Content-Length: " + Integer.toString(body.length()) + LF).getBytes());
-                    writer.write(("Content-Type: text/html" + LF).getBytes());
-                    writer.write(("Connection: close" + LF).getBytes());
-                    writer.write(LF.getBytes());
-                    writer.write(body.getBytes());
-                    writer.flush();
-                    writer.close();
-                    socket.close();
-                    count++;
-                    System.out.println(count);
-                } catch (java.io.IOException e) {
-                    System.out.println(e);
-                    socket.close();
-                }
+                executor.execute(new MessageHandler(listener.accept(), ++count));
             }
         } catch (java.io.IOException e) {
             System.out.println(e);
