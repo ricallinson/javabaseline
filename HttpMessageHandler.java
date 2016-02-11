@@ -6,12 +6,12 @@
 
 package github.com.ricallinson.javabaseline;
 
-class MessageHandler implements Runnable {
+class HttpMessageHandler implements Runnable {
 
     protected java.net.Socket socket;
     protected int id;
 
-    MessageHandler(java.net.Socket socket, int id) {
+    HttpMessageHandler(java.net.Socket socket, int id) {
         this.socket = socket;
         this.id = id;
     }

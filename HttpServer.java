@@ -6,17 +6,17 @@
 
 package github.com.ricallinson.javabaseline;
 
-public class HttpBaseline_test {
+class HttpServer {
 
-    public static void main(String[] args) {
+    HttpServer(int port) {
         int cores = Runtime.getRuntime().availableProcessors();
         java.util.concurrent.ExecutorService executor = java.util.concurrent.Executors.newFixedThreadPool(cores);
         System.out.println("Server started, using " + Integer.toString(cores) + " cores...");
         try {
-            java.net.ServerSocket listener = new java.net.ServerSocket(8080);
+            java.net.ServerSocket listener = new java.net.ServerSocket(port);
             int count = 0;
             while (true) {
-                executor.execute(new MessageHandler(listener.accept(), ++count));
+                executor.execute(new HttpMessageHandler(listener.accept(), ++count));
             }
         } catch (java.io.IOException e) {
             System.out.println(e);
