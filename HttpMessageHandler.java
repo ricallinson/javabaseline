@@ -28,15 +28,15 @@ class HttpMessageHandler implements Runnable {
                 String body = "<h1>Hello world</h1>" + CRLF;
                 String header = "HTTP/1.1 200 OK" + CRLF +
                     "Content-Length: " + Integer.toString(body.length()) + CRLF +
-                    "Content-Type: text/html" + CRLF;
+                    "Content-Type: text/html;charset=utf-8" + CRLF;
                 if (this.keepAliveMax > 0) {
                     header += "Keep-Alive: timeout=15, max=" + Integer.toString(this.keepAliveMax) + CRLF;
+                    header += "Connection: keep-alive" + CRLF;
                 } else {
                     header += "Connection: close" + CRLF;
                 }
                 writer.write((header + CRLF + body).getBytes());
                 writer.flush();
-                // System.out.println(Integer.toString(this.id) + ":" + Integer.toString(this.keepAliveMax));
             }
             this.socket.close();
         } catch (java.io.IOException e) {

@@ -1,8 +1,10 @@
 # javabaseline
 
-This is a simple _hello world_ http server to find a baseline number for performance tests. Requires [Jmm](https://github.com/jminusminus/jmm).
+This is a simple _hello world_ HTTP Java server to find a baseline number for performance comparisons.
 
 ## Install Jmm
+
+Requires [Jmm](https://github.com/jminusminus/jmm).
 
 	git clone git@github.com:jminusminus/jmm.git ~/.jmm
 	source ~/.jmm/jmm.sh
@@ -30,16 +32,16 @@ Now run apache bench;
 The test was run on a MacBook Pro (Retina, 13-inch, Mid 2014), 3 GHz Intel Core i7 with 16 GB 1600 MHz DDR3 memory.
 
 	Concurrency Level:      8
-	Time taken for tests:   12.464 seconds
+	Time taken for tests:   13.068 seconds
 	Complete requests:      1000000
 	Failed requests:        0
-	Keep-Alive requests:    998004
-	Total transferred:      118756414 bytes
+	Keep-Alive requests:    998005
+	Total transferred:      156708668 bytes
 	HTML transferred:       22000000 bytes
-	Requests per second:    80228.88 [#/sec] (mean)
-	Time per request:       0.100 [ms] (mean)
-	Time per request:       0.012 [ms] (mean, across all concurrent requests)
-	Transfer rate:          9304.39 [Kbytes/sec] received
+	Requests per second:    76520.02 [#/sec] (mean)
+	Time per request:       0.105 [ms] (mean)
+	Time per request:       0.013 [ms] (mean, across all concurrent requests)
+	Transfer rate:          11710.30 [Kbytes/sec] received
 
 ## Problems Found
 
