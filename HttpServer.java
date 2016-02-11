@@ -10,8 +10,9 @@ class HttpServer {
 
     HttpServer(int port) {
         int cores = Runtime.getRuntime().availableProcessors();
-        java.util.concurrent.ExecutorService executor = java.util.concurrent.Executors.newFixedThreadPool(cores);
-        System.out.println("Server started, using " + Integer.toString(cores) + " cores...");
+        int threads = cores * 1;
+        java.util.concurrent.ExecutorService executor = java.util.concurrent.Executors.newFixedThreadPool(threads);
+        System.out.println("Server started, using " + Integer.toString(cores) + " cores and " + Integer.toString(threads) + " threads...");
         try {
             java.net.ServerSocket listener = new java.net.ServerSocket(port);
             int count = 0;
