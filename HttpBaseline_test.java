@@ -21,7 +21,7 @@ public class HttpBaseline_test {
                     java.io.InputStream reader = socket.getInputStream();
                     reader.read(new byte[1000]);
                     java.io.OutputStream writer = socket.getOutputStream();
-                    String body = "<h1>Hello world</h1>";
+                    String body = "<h1>Hello world</h1>" + LF;
                     writer.write(("HTTP/1.1 200 OK" + LF).getBytes());
                     writer.write(("Content-Length: " + Integer.toString(body.length()) + LF).getBytes());
                     writer.write(("Content-Type: text/html" + LF).getBytes());
