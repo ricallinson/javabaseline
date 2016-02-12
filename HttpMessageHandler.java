@@ -25,12 +25,13 @@ class HttpMessageHandler implements Runnable {
             java.io.OutputStream writer = this.socket.getOutputStream();
             while (--this.keepAliveMax >= 0) {
                 reader.read(new byte[1000]);
-                String body = "<h1>Hello world</h1>" + CRLF;
+                String body = "<h1>Hello world</h1>";
                 String header = "HTTP/1.1 200 OK" + CRLF +
+                    "Date: " + java.time.format.DateTimeFormatter.RFC_1123_DATE_TIME.format(java.time.ZonedDateTime.now(java.time.ZoneId.of("GMT"))) + CRLF +
                     "Content-Length: " + Integer.toString(body.length()) + CRLF +
                     "Content-Type: text/html;charset=utf-8" + CRLF;
                 if (this.keepAliveMax > 0) {
-                    header += "Keep-Alive: timeout=15, max=" + Integer.toString(this.keepAliveMax) + CRLF;
+                    // header += "Keep-Alive: timeout=15, max=" + Integer.toString(this.keepAliveMax) + CRLF;
                     header += "Connection: keep-alive" + CRLF;
                 } else {
                     header += "Connection: close" + CRLF;

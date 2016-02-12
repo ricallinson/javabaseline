@@ -32,16 +32,16 @@ Now run apache bench;
 The test was run on a MacBook Pro (Retina, 13-inch, Mid 2014), 3 GHz Intel Core i7 with 16 GB 1600 MHz DDR3 memory.
 
 	Concurrency Level:      8
-	Time taken for tests:   13.068 seconds
+	Time taken for tests:   13.046 seconds
 	Complete requests:      1000000
 	Failed requests:        0
-	Keep-Alive requests:    998005
-	Total transferred:      156708668 bytes
-	HTML transferred:       22000000 bytes
-	Requests per second:    76520.02 [#/sec] (mean)
-	Time per request:       0.105 [ms] (mean)
+	Keep-Alive requests:    998004
+	Total transferred:      158990020 bytes
+	HTML transferred:       20000000 bytes
+	Requests per second:    76649.66 [#/sec] (mean)
+	Time per request:       0.104 [ms] (mean)
 	Time per request:       0.013 [ms] (mean, across all concurrent requests)
-	Transfer rate:          11710.30 [Kbytes/sec] received
+	Transfer rate:          11900.91 [Kbytes/sec] received
 
 ## Problems Found
 
