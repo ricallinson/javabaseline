@@ -31,7 +31,6 @@ class HttpMessageHandler implements Runnable {
                     "Content-Length: " + Integer.toString(body.length()) + CRLF +
                     "Content-Type: text/html;charset=utf-8" + CRLF;
                 if (this.keepAliveMax > 0) {
-                    // header += "Keep-Alive: timeout=15, max=" + Integer.toString(this.keepAliveMax) + CRLF;
                     header += "Connection: keep-alive" + CRLF;
                 } else {
                     header += "Connection: close" + CRLF;
